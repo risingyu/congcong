@@ -95,7 +95,7 @@ html,body{ height: 100%;}
 .cinema_body .address{ font-size: 13px; color: #666;}
 .cinema_body .address span:nth-of-type(2){ float: right;}
 .cinema_body .card{ display: flex;}
-.cinema_body .card div{ padding: 0 3px; height: 15px; line-height: 15px; border-radius: 2px; color: #f90; border: 1px solid #f90;}xxxxx
+.cinema_body .card div{ padding: 0 3px; height: 15px; line-height: 15px; border-radius: 2px; color: #f90; border: 1px solid #f90; margin: 2px;}xxxxx
 .cinema_body .card div.or{ color: #f90; border: 1px solid #f90;}
 .cinema_body .card div.bl{ color: #589daf; border: 1px solid #589daf;}
 

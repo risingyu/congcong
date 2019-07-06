@@ -3,13 +3,13 @@
         <div class="search_input">
             <div class="search_input_wrapper">
                 <i class="iconfont icon-sousuo"></i>
-                <input type="text">
+                <input type="text" v-model="message">
             </div>
         </div>
         <div class="search_result">
             <h3>电影/电视剧/综艺</h3>
             <ul>
-                <li>
+                <!-- <li>
                     <div class="img"><img src="/images/movie_1.jpg"></div>
                     <div class="info">
                         <p><span>蜘蛛侠：英雄远征</span><span>9.0</span></p>
@@ -25,6 +25,15 @@
                         <p>Spider-Man:Far From Home</p>
                         <p>动作/冒险/科幻/美国/127分钟</p>
                         <p>2019-06-28</p>
+                    </div>
+                </li> -->
+                <li v-for="item in moviesList" :key="item.id">
+                    <div class="img"><img :src="item.img | setWH('128.180')"></div>
+                    <div class="info">
+                        <p><span>{{ item.nm }}</span><span>{{ item.sc }}</span></p>
+                        <p>{{ item.enm }}</p>
+                        <p>{{ item.cat }}</p>
+                        <p>{{ item.rt }}</p>
                     </div>
                 </li>
             </ul>
@@ -33,8 +42,49 @@
 </template>
 
 <script>
+import { clearTimeout, setTimeout } from 'timers';
 export default {
-    name : 'Search'
+    name : 'Search',
+    data(){
+        return{
+            message : '',
+            moviesList : []
+        }
+    },
+    methods : {
+        cancelRequest(){
+            if(typeof this.source ==='function'){
+                this.source('终止请求')
+            }
+        },
+    },
+    watch : {
+        message(newVal){
+            /* console.log(newVal); */
+            /* clearTimeout()
+            setTimeout()   函数防抖*/
+            var that = this;
+            this.cancelRequest();
+
+            this.axios.get('/api/searchList?cityId=10&kw='+newVal,{
+                cancelToken: new this.axios.CancelToken(function(c){
+                    that.source = c;
+                })
+            }).then((res)=>{
+                var msg = res.data.msg;
+                var movies = res.data.data.movies;
+                if (msg && movies) {
+                    this.moviesList = res.data.data.movies.list;
+                }
+            }).catch((err) => {
+                if (this.axios.isCancel(err)) {
+                    console.log('Rquest canceled', err.message); //请求如果被取消，这里是返回取消的message
+                } else {
+                    console.log(err);
+                }
+            });
+        }
+    }
 }
 </script>
 

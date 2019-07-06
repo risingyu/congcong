@@ -1,7 +1,7 @@
 <template>
     <div class="movie_body">
         <ul>
-            <li>
+            <!-- <li>
                 <div class="pic_show"><img src="/images/movie_1.jpg"></div>
                 <div class="info_list">
                     <h2>蜘蛛侠：英雄远征</h2>
@@ -96,14 +96,39 @@
                 <div class="btn_mall">
                     购票
                 </div>
-            </li>
+            </li> -->
+            <li v-for="item in movieList" :key="item.id">
+                <div class="pic_show"><img :src="item.img | setWH('128.180')"></div>
+                <div class="info_list">
+                    <h2>{{item.nm}} <img v-if="item.version" src="@/assets/imax.png"></h2>
+                    <p>观众评分<span class="grade">{{ item.sc }}</span></p>
+                    <p>主演：{{ item.star }}</p>
+                    <p>{{ item.showInfo }}</p>
+                </div>
+                <div class="btn_mall">
+                    购票
+                </div>
+            </li>    
         </ul>
     </div>
 </template>
 
 <script>
 export default {
-    name : 'NowPlaying'
+    name : 'NowPlaying',
+    data(){
+        return {
+            movieList : []
+        }
+    },
+    mounted(){
+        this.axios.get('/api/movieOnInfoList?cityId=10').then((res)=>{
+            var msg = res.data.msg;
+            if (msg === 'ok') {
+                this.movieList = res.data.data.movieList;
+            }
+        })
+    }
 }
 </script>
 
