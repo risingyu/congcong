@@ -19,6 +19,7 @@
                 </keep-alive>
             </div>
         <TabBar />
+        <router-view name="detail" />
         <!-- <MessageBox /> -->
     </div>
 </template>
