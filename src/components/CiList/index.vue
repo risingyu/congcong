@@ -1,76 +1,51 @@
 <template>
     <div class="cinema_body">
-        <ul>
-            <!-- <li>
-                <div>
-                    <span>西安奥斯卡赛高国际影城</span>
-                    <span class="q"><span class="price">25.8</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>经开区凤城五路与未央大道十字西南角赛高街区四层</span>
-                    <span>888.8km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>影城卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>西安奥斯卡赛高国际影城</span>
-                    <span class="q"><span class="price">25.8</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>经开区凤城五路与未央大道十字西南角赛高街区四层</span>
-                    <span>888.8km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>影城卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>西安奥斯卡赛高国际影城</span>
-                    <span class="q"><span class="price">25.8</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>经开区凤城五路与未央大道十字西南角赛高街区四层</span>
-                    <span>888.8km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>影城卡</div>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <span>西安奥斯卡赛高国际影城</span>
-                    <span class="q"><span class="price">25.8</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>经开区凤城五路与未央大道十字西南角赛高街区四层</span>
-                    <span>888.8km</span>
-                </div>
-                <div class="card">
-                    <div>小吃</div>
-                    <div>影城卡</div>
-                </div>
-            </li> -->
-            <li v-for="item in cinemaList" :key="item.id">
-                <div>
-                    <span>{{ item.nm }}</span>
-                    <span class="q"><span class="price">{{ item.sellPrice }}</span>元起</span>
-                </div>
-                <div class="address">
-                    <span>{{ item.addr }}</span>
-                    <span>{{ item.distance }}</span>
-                </div>
-                <div class="card">
-                    <div v-for="(num,key) in item.tag" v-if="num===1" :key="key" :class="key | classCard">{{ key | formatCard }}</div>
-                </div>
-            </li>
-        </ul>
+        <Loading v-if="isLoading" />
+        <Scroller v-else>
+            <ul>
+                <!-- <li>
+                    <div>
+                        <span>西安奥斯卡赛高国际影城</span>
+                        <span class="q"><span class="price">25.8</span>元起</span>
+                    </div>
+                    <div class="address">
+                        <span>经开区凤城五路与未央大道十字西南角赛高街区四层</span>
+                        <span>888.8km</span>
+                    </div>
+                    <div class="card">
+                        <div>小吃</div>
+                        <div>影城卡</div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span>西安奥斯卡赛高国际影城</span>
+                        <span class="q"><span class="price">25.8</span>元起</span>
+                    </div>
+                    <div class="address">
+                        <span>经开区凤城五路与未央大道十字西南角赛高街区四层</span>
+                        <span>888.8km</span>
+                    </div>
+                    <div class="card">
+                        <div>小吃</div>
+                        <div>影城卡</div>
+                    </div>
+                </li> -->
+                <li v-for="item in cinemaList" :key="item.id">
+                    <div>
+                        <span>{{ item.nm }}</span>
+                        <span class="q"><span class="price">{{ item.sellPrice }}</span>元起</span>
+                    </div>
+                    <div class="address">
+                        <span>{{ item.addr }}</span>
+                        <span>{{ item.distance }}</span>
+                    </div>
+                    <div class="card">
+                        <div v-for="(num,key) in item.tag" v-if="num===1" :key="key" :class="key | classCard">{{ key | formatCard }}</div>
+                    </div>
+                </li>
+            </ul>
+        </Scroller>
     </div>
 </template>
 
@@ -79,14 +54,22 @@ export default {
     name : 'CiList',
     data(){
         return {
-            cinemaList : []
+            cinemaList : [],
+            isLoading : true,
+            prevCityId : -1
         };
     },
-    mounted(){
-        this.axios.get('/api/cinemaList?cityId=10').then((res)=>{
+    // mounted(){
+    activated(){
+        var cityId = this.$store.state.city.id;
+        if ( this.prevCityId === cityId) {return;}
+        this.isLoading = true;
+        this.axios.get('/api/cinemaList?cityId='+cityId).then((res)=>{
             var msg = res.data.msg;
             if (msg === 'ok') {
                 this.cinemaList = res.data.data.cinemas;
+                this.isLoading = false;
+                this.prevCityId = cityId
             }
         });
     },
