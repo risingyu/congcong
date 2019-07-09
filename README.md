@@ -10,19 +10,21 @@
 
 ### 项目演示
 
-![public/images/nowPlaying.png]()
+![](public/images/nowPlaying.png)
 
-![public/images/comingSoon.png]()
+![](public/images/comingSoon.png)
 
-![public/images/movieDetail.png]()
+![](public/images/movieDetail.png)
 
-![public/images/City.png]()
+![](public/images/City.png)
 
-![public/images/Search.png]()
+![](public/images/Search.png)
 
-![public/images/cinemaList.png]()
 
-![public/images/Login.png]()
+
+![](public/images/cinemaList.png)
+
+![](public/images/Login.png)
 
 ### 开发环境
 
