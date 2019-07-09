@@ -10,19 +10,19 @@
 
 ### 项目演示
 
-![](E:\vueproject\images\nowPlaying.png)
+![https://github.com/risingyu/congcong/blob/dev/public/images/nowPlaying.png]()
 
+![https://github.com/risingyu/congcong/blob/dev/public/images/comingSoon.png]()
 
+![https://github.com/risingyu/congcong/blob/dev/public/images/movieDetail.png]()
 
-![](E:\vueproject\images\movieDetail.png)
+![https://github.com/risingyu/congcong/blob/dev/public/images/City.png]()
 
-![](E:\vueproject\images\City.png)
+![https://github.com/risingyu/congcong/blob/dev/public/images/Search.png]()
 
-![](E:\vueproject\images\Search.png)
+![https://github.com/risingyu/congcong/blob/dev/public/images/cimenaList.png]()
 
-![](E:\vueproject\images\cinemaList.png)
-
-![](E:\vueproject\images\Login.png)
+![https://github.com/risingyu/congcong/blob/dev/public/images/Login.png]()
 
 ### 开发环境
 
