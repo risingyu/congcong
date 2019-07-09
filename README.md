@@ -2,23 +2,27 @@
 
 ### 项目简介
 
- 	聪聪电影，可实现查看当前正在热映的电影和即将上映的电影的列表和详情，有定位到当前城市的功能和搜索电影名称功能，可查看当前城市的电影院，有登录界面。
+​	聪聪电影，可实现查看当前正在热映的电影和即将上映的电影的列表和详情，
+
+​	有定位到当前城市功能和搜索电影名称功能，
+
+​	可查看当前城市的电影院，有登录界面。
 
 ### 项目演示
 
-![](C:\Users\heqiyu\Desktop\nowPlaying.png)
+![](E:\vueproject\images\nowPlaying.png)
 
-![](C:\Users\heqiyu\Desktop\comingSoon.png)
 
-![](C:\Users\heqiyu\Desktop\movieDetail.png)
 
-![](C:\Users\heqiyu\Desktop\City.png)
+![](E:\vueproject\images\movieDetail.png)
 
-![](C:\Users\heqiyu\Desktop\Search.png)
+![](E:\vueproject\images\City.png)
 
-![](C:\Users\heqiyu\Desktop\cinemaList.png)
+![](E:\vueproject\images\Search.png)
 
-![](C:\Users\heqiyu\Desktop\Login.png)
+![](E:\vueproject\images\cinemaList.png)
+
+![](E:\vueproject\images\Login.png)
 
 ### 开发环境
 
